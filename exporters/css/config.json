@@ -106,7 +106,7 @@
     {
         "key": "baseStyleFilePath",
         "type": "string",
-        "default": "./styles",
+        "default": ".",
         "title": "Base Style File Path",
         "description": "All files will be written to this directory (relative to export root set by the exporter / pipeline configuration / VSCode extension)"
     },
