@@ -4,7 +4,6 @@ import { exportConfiguration } from ".."
 
 export function convertedToken(token: Token, mappedTokens: Map<string, Token>, tokenGroups: Array<TokenGroup>): string {
   // First creating the name of the token, using helper function which turns any token name / path into a valid variable name
-  
   const name = tokenVariableName(token, tokenGroups)
 
   // Then creating the value of the token, using another helper function
@@ -28,7 +27,8 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
 }
 
 function tokenVariableName(token: Token, tokenGroups: Array<TokenGroup>): string {
-  const prefix = exportConfiguration.tokenPrefixes[token.tokenType] 
-  const parent = tokenGroups.find((group) => group.id === token.parentGroupId)!
-  return NamingHelper.codeSafeVariableNameForToken(token, exportConfiguration.tokenNameStyle, null, prefix)
+  const prefix = exportConfiguration.tokenPrefixes[token.tokenType]
+  //const parent = tokenGroups.find((group) => group.id === token.parentGroupId)!
+  const parent = tokenGroups[0] ;
+  return NamingHelper.codeSafeVariableNameForToken(token, exportConfiguration.tokenNameStyle, parent, prefix)
 }
