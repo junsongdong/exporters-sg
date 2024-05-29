@@ -15,8 +15,8 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
       return `var(--${tokenVariableName(t, tokenGroups)})`
     },
   })
-
- if (token.tokenType === TokenType.fontWeight){
+  
+ if (token.tokenType.toLowerCase() === TokenType.fontWeight.toLowerCase()){
     value = Number.isNaN(+value) ? value : +value
  }
 
@@ -24,10 +24,10 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
 
   if (exportConfiguration.showDescriptions && token.description) {
     // Generate token with comments
-    return `${indentString}/* ${token.description.trim()} */\n${indentString}--${name}: ${500};`
+    return `${indentString}/* ${token.description.trim()} */\n${indentString}--${name}: ${value};`
   } else {
     // Generate tokens without comments
-    return `${indentString}--${name}: ${500};`
+    return `${indentString}--${name}: ${value};`
   }
 }
 
