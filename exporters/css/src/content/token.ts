@@ -15,7 +15,7 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
       return `var(--${tokenVariableName(t, tokenGroups)})`
     },
   })
-  
+
  if (token.tokenType === TokenType.fontWeight){
     value = Number.isNaN(+value) ? value : +value
  }
@@ -27,7 +27,7 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
     return `${indentString}/* ${token.description.trim()} */\n${indentString}--${name}: ${value};`
   } else {
     // Generate tokens without comments
-    return `${indentString}--${name}: ${value};`
+    return `${indentString}--${name}: ${500};`
   }
 }
 
