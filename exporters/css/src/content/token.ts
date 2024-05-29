@@ -21,7 +21,7 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
   
   if(token.tokenType.toLowerCase().indexOf(TokenType.fontWeight.toLowerCase()) > -1 ){
  
-     if(value.indexOf("200") > -1){
+     /*if(value.indexOf("200") > -1){
          value = 200;
      } else if(value.indexOf("300")>-1){
          value = 300;
@@ -36,8 +36,13 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
          value = 700;
      } else if(value.indexOf("800")>-1){
          value = 800;
-     } 
+     } */
+     
    }
+   if (token.tokenType === TokenType.fontWeight) {
+    let candidate = +(value?.replaceAll('"', ''))
+    value = Number.isNaN(candidate) ? value : candidate;
+  }
   const indentString = " ".repeat(exportConfiguration.indent)
 
   if (exportConfiguration.showDescriptions && token.description) {
