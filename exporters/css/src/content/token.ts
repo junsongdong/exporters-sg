@@ -22,10 +22,9 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
     return `${indentString}/* ${token.description.trim()} */\n${indentString}--${name}: ${value};`
   } else {
     // Generate tokens without comments
-    if(name.indexOf("weight")>-1 && !isNaN(parseFloat(value)))
-    return `${indentString}--${name}:` + parseFloat(value) ;
-    else
-    return `${indentString}--${name}: ${value};`
+    return `${indentString}--${name}: ${
+         !isNaN(parseFloat(value)) ? parseFloat(value) : value
+    };`;
 
   }
 }
