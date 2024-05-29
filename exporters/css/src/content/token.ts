@@ -22,7 +22,10 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
     return `${indentString}/* ${token.description.trim()} */\n${indentString}--${name}: ${value};`
   } else {
     // Generate tokens without comments
+    if(name.indexOf("weight")>-1 && !isNaN(parseFloat(value)))
     return `${indentString}--${name}: ${value};`
+    else
+    return `${indentString}--${name}: ${parseFloat(value)};`
   }
 }
 
