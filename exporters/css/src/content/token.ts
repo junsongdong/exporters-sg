@@ -20,7 +20,7 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
   })
   
  if (token.tokenType.toLowerCase().indexOf(TokenType.fontWeight.toLowerCase()) > -1   ){
-     value = parseFloat(value);
+     value = parseFloat(value.trim());
  }
  
   const indentString = " ".repeat(exportConfiguration.indent)
