@@ -3,7 +3,7 @@ import { Token, TokenGroup, TokenType } from "@supernovaio/sdk-exporters"
 import { exportConfiguration } from ".."
 
 function isNumeric(value) {
-  return !isNaN(value) && !isNaN(parseFloat(value));
+  return /^-?\d+(\.\d+)?$/.test(value);
 }
 export function convertedToken(token: Token, mappedTokens: Map<string, Token>, tokenGroups: Array<TokenGroup>): string {
   // First creating the name of the token, using helper function which turns any token name / path into a valid variable name
