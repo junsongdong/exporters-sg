@@ -19,18 +19,24 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
     },
   })
   
-  if(token.tokenType.toLowerCase().indexOf(TokenType.fontWeight.toLowerCase()) > -1   ){
+  if(token.tokenType.toLowerCase().indexOf(TokenType.fontWeight.toLowerCase()) > -1 ){
  
-     if(value.indexOf("300") > -1){
+     if(value.indexOf("200") > -1){
+         value = 200;
+     } else if(value.indexOf("300")>-1){
          value = 300;
      } else if(value.indexOf("400")>-1){
          value = 400;
-     } else if(value.indexOf("500")>-1){
+     }else if(value.indexOf("500")>-1){
          value = 500;
-     }else if(value.indexOf("700")>-1){
-         value = 700;
      }
-      
+     else if(value.indexOf("600")>-1){
+         value = 600;
+     } else if(value.indexOf("700")>-1){
+         value = 700;
+     } else if(value.indexOf("800")>-1){
+         value = 800;
+     } 
    }
   const indentString = " ".repeat(exportConfiguration.indent)
 
