@@ -20,7 +20,7 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
   })
   
   if (token.tokenType.toLowerCase().indexOf(TokenType.fontWeight.toLowerCase()) > -1   ){
-    if(value == "300"){
+    if(value.indexOf("300")>-1){
      value = 300
     }  else if (value == "400"){
      value = 400
