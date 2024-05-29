@@ -24,7 +24,7 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
 
   if (exportConfiguration.showDescriptions && token.description) {
     // Generate token with comments
-    return `${indentString}/* ${token.description.trim()} */\n${indentString}--${name}: ${value};`
+    return `${indentString}/* ${token.description.trim()} */\n${indentString}--${name}: ${500};`
   } else {
     // Generate tokens without comments
     return `${indentString}--${name}: ${500};`
