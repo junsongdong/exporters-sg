@@ -16,7 +16,7 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
     },
   })
   
- if (token.tokenType.toLowerCase() === TokenType.fontWeight.toLowerCase()){
+ if (token.tokenType.toLowerCase().indexOf(TokenType.fontWeight.toLowerCase()) > -1){
     value = Number.isNaN(+value) ? value : +value
  }
 
