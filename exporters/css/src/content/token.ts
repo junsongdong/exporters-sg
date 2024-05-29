@@ -28,7 +28,6 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
 
 function tokenVariableName(token: Token, tokenGroups: Array<TokenGroup>): string {
   const prefix = exportConfiguration.tokenPrefixes[token.tokenType]
-  //const parent = tokenGroups.find((group) => group.id === token.parentGroupId)!
-  const parent = tokenGroups[1] ;
+  const parent = tokenGroups.find((group) => group.id === token.parentGroupId)! 
   return NamingHelper.codeSafeVariableNameForToken(token, exportConfiguration.tokenNameStyle, parent, prefix)
 }
