@@ -19,17 +19,9 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
     },
   })
   
-  if (token.tokenType.toLowerCase().indexOf(TokenType.fontWeight.toLowerCase()) > -1   ){
-    if(value.indexOf("300")>-1){
-     value = 300
-    }  else if (value == "400"){
-     value = 400
-    }else if (value == "500"){
-     value = 500
-    }
-   }else if (value == "700"){
-     value = 700
-    } 
+  if (token.tokenType.toLowerCase().indexOf(TokenType.fontWeight.toLowerCase()) > -1 && isNumeric(value.replace(/\s/g, "")) ){
+    value = Number(value); 
+   }
   const indentString = " ".repeat(exportConfiguration.indent)
 
   if (exportConfiguration.showDescriptions && token.description) {
