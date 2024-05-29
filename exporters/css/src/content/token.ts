@@ -19,10 +19,17 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
     },
   })
   
- if (token.tokenType.toLowerCase().indexOf(TokenType.fontWeight.toLowerCase()) > -1   ){
-     value = parseFloat(value.trim());
- }
- 
+  if (token.tokenType.toLowerCase().indexOf(TokenType.fontWeight.toLowerCase()) > -1   ){
+    if(value == "300"){
+     value = 300
+    }  else if (value == "400"){
+     value = 400
+    }else if (value == "500"){
+     value = 500
+    }
+   }else if (value == "700"){
+     value = 700
+    } 
   const indentString = " ".repeat(exportConfiguration.indent)
 
   if (exportConfiguration.showDescriptions && token.description) {
