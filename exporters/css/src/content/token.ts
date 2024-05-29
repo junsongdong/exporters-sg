@@ -19,8 +19,10 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
     },
   })
   
-  if (token.tokenType.toLowerCase().indexOf(TokenType.fontWeight.toLowerCase()) > -1 && isNumeric(value.replace(/\s/g, "")) ){
-    value = Number(value); 
+  if(token.tokenType.toLowerCase().indexOf(TokenType.fontWeight.toLowerCase()) > -1   ){
+     value = value.replace(/\s/g, "");
+     value =  Number.isNaN(+value) ? value : +value; 
+
    }
   const indentString = " ".repeat(exportConfiguration.indent)
 
