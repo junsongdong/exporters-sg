@@ -8,17 +8,6 @@ function isNumeric(value) {
 export function convertedToken(token: Token, mappedTokens: Map<string, Token>, tokenGroups: Array<TokenGroup>): string {
   // First creating the name of the token, using helper function which turns any token name / path into a valid variable name
   let name = tokenVariableName(token, tokenGroups)
-
-  // Then creating the value of the token, using another helper function
-  let value: string | number = CSSHelper.tokenToCSS(token, mappedTokens, {
-    allowReferences: exportConfiguration.useReferences,
-    decimals: exportConfiguration.colorPrecision,
-    colorFormat: exportConfiguration.colorFormat,
-    tokenToVariableRef: (t) => {
-      return `var(--${tokenVariableName(t, tokenGroups)})`
-    },
-  })
-  
   if (token.tokenType === TokenType.borderWidth) {
     name = name.startsWith('border-width-') ? name.substring(12) : name
   }
@@ -47,6 +36,20 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
   }
     
   if (token.tokenType === TokenType.fontWeight) {
+    name = name.startsWith('font-weight-') ? name.substring(12) : name
+   }
+
+  // Then creating the value of the token, using another helper function
+  let value: string | number = CSSHelper.tokenToCSS(token, mappedTokens, {
+    allowReferences: exportConfiguration.useReferences,
+    decimals: exportConfiguration.colorPrecision,
+    colorFormat: exportConfiguration.colorFormat,
+    tokenToVariableRef: (t) => {
+      return `var(--${tokenVariableName(t, tokenGroups)})`
+    },
+  })
+  
+ if (token.tokenType === TokenType.fontWeight) {
     let candidate = +(value?.replaceAll('"', ''))
     value = Number.isNaN(candidate) ? value : candidate;
   }
