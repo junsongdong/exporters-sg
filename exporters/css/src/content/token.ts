@@ -42,39 +42,17 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
     allowReferences: exportConfiguration.useReferences,
     decimals: exportConfiguration.colorPrecision,
     colorFormat: exportConfiguration.colorFormat,
-    tokenToVariableRef: (t) => {
-
-      let nameVal = tokenVariableName(t, tokenGroups)
-      if (token.tokenType === TokenType.borderWidth) {
-        nameVal = nameVal.startsWith('border-width-') ? nameVal.substring(12) : nameVal
-      }
-        
-      if (token.tokenType === TokenType.fontSize) {
-        nameVal = nameVal.startsWith('font-size-') ? nameVal.substring(10) : nameVal
-      }
-      if (token.tokenType === TokenType.letterSpacing) {
-        nameVal = nameVal.startsWith('letter-spacing-') ? nameVal.substring(15) : nameVal
-      }
-      if (token.tokenType === TokenType.lineHeight) {
-        nameVal = nameVal.startsWith('line-height-') ? nameVal.substring(12) : nameVal
-      }
-      if (token.tokenType === TokenType.radius) {
-        nameVal = nameVal.startsWith('border-radius-') ? nameVal.substring(14) : nameVal
-      }
-      if (token.tokenType === TokenType.size) {
-        nameVal = nameVal.startsWith('sizing-') ? nameVal.substring(7) : nameVal
-      }
-      if (token.tokenType === TokenType.space) {
-        nameVal = nameVal.startsWith('spacing-') ? nameVal.substring(8) : nameVal
-      }
-    
-      if (token.tokenType === TokenType.fontFamily) {
-        nameVal = nameVal.startsWith('font-family-') ? nameVal.substring(12) : nameVal
-      }
-        
-      if (token.tokenType === TokenType.fontWeight) {
-        nameVal = nameVal.startsWith('font-weight-') ? nameVal.substring(12) : nameVal
-       }
+    tokenToVariableRef: (t) => { 
+      let nameVal = tokenVariableName(t, tokenGroups) 
+        nameVal = nameVal.startsWith('border-width-') ? nameVal.substring(12) : nameVal 
+        nameVal = nameVal.startsWith('font-size-') ? nameVal.substring(10) : nameVal  
+        nameVal = nameVal.startsWith('letter-spacing-') ? nameVal.substring(15) : nameVal  
+        nameVal = nameVal.startsWith('line-height-') ? nameVal.substring(12) : nameVal  
+        nameVal = nameVal.startsWith('border-radius-') ? nameVal.substring(14) : nameVal  
+        nameVal = nameVal.startsWith('sizing-') ? nameVal.substring(7) : nameVal  
+        nameVal = nameVal.startsWith('spacing-') ? nameVal.substring(8) : nameVal   
+        nameVal = nameVal.startsWith('font-family-') ? nameVal.substring(12) : nameVal 
+        nameVal = nameVal.startsWith('font-weight-') ? nameVal.substring(12) : nameVal 
       return `var(--${nameVal})`
     },
   })
