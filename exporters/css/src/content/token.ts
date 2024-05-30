@@ -2,9 +2,7 @@ import { NamingHelper, CSSHelper } from "@supernovaio/export-helpers"
 import { Token, TokenGroup, TokenType } from "@supernovaio/sdk-exporters"
 import { exportConfiguration } from ".."
 
-function isNumeric(value) {
-  return /^-?\d+(\.\d+)?$/.test(value);
-}
+ 
 export function convertedToken(token: Token, mappedTokens: Map<string, Token>, tokenGroups: Array<TokenGroup>): string {
   // First creating the name of the token, using helper function which turns any token name / path into a valid variable name
   let name = tokenVariableName(token, tokenGroups)
@@ -45,10 +43,10 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
     decimals: exportConfiguration.colorPrecision,
     colorFormat: exportConfiguration.colorFormat,
     tokenToVariableRef: (t) => {
-      return `var(--${tokenVariableName(t, tokenGroups)})`
+      return `var(--${name})`
     },
   })
-  
+ 
  if (token.tokenType === TokenType.fontWeight) {
     let candidate = +(value?.replaceAll('"', ''))
     value = Number.isNaN(candidate) ? value : candidate;
