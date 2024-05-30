@@ -7,7 +7,7 @@ function isNumeric(value) {
 }
 export function convertedToken(token: Token, mappedTokens: Map<string, Token>, tokenGroups: Array<TokenGroup>): string {
   // First creating the name of the token, using helper function which turns any token name / path into a valid variable name
-  const name = tokenVariableName(token, tokenGroups)
+  let name = tokenVariableName(token, tokenGroups)
 
   // Then creating the value of the token, using another helper function
   let value: string | number = CSSHelper.tokenToCSS(token, mappedTokens, {
@@ -18,27 +18,11 @@ export function convertedToken(token: Token, mappedTokens: Map<string, Token>, t
       return `var(--${tokenVariableName(t, tokenGroups)})`
     },
   })
-  
-  if(token.tokenType.toLowerCase().indexOf(TokenType.fontWeight.toLowerCase()) > -1 ){
- 
-     /*if(value.indexOf("200") > -1){
-         value = 200;
-     } else if(value.indexOf("300")>-1){
-         value = 300;
-     } else if(value.indexOf("400")>-1){
-         value = 400;
-     }else if(value.indexOf("500")>-1){
-         value = 500;
-     }
-     else if(value.indexOf("600")>-1){
-         value = 600;
-     } else if(value.indexOf("700")>-1){
-         value = 700;
-     } else if(value.indexOf("800")>-1){
-         value = 800;
-     } */
-     
-   }
+   
+  if (token.tokenType === TokenType.fontFamily) {
+    name = name.startsWith('font-family-font-family-') ? name.replace("font-family-font-family","font-family") : name
+  }
+    
    if (token.tokenType === TokenType.fontWeight) {
     let candidate = +(value?.replaceAll('"', ''))
     value = Number.isNaN(candidate) ? value : candidate;
